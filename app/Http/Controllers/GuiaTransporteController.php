@@ -16,7 +16,7 @@ class GuiaTransporteController extends Controller
     public function create()
     {
         // Mostrar el formulario para crear una nueva guía de transporte
-        return view('guias.create');
+        return view('guia.create');
     }
 
     public function store(Request $request)
@@ -34,7 +34,7 @@ class GuiaTransporteController extends Controller
 
         GuiaTransporte::createGuia($data);
 
-        return redirect()->route('guias.index')->with('success', 'Guía de transporte creada exitosamente.');
+        return redirect()->route('guia.index')->with('success', 'Guía de transporte creada exitosamente.');
     }
 
     public function show($id)
@@ -51,6 +51,10 @@ class GuiaTransporteController extends Controller
         // Mostrar el formulario para crear una nueva remisión asociada a una guía de transporte
         $guia = GuiaTransporte::find($id);
         return view('remisiones.create', compact('guia'));
+    }
+    public function createForm()
+    {
+        return view('guias.createform');
     }
 }
 
