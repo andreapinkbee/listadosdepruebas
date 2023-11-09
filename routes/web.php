@@ -36,7 +36,7 @@ Route::post('/guias/create', [GuiaTransporteController::class, 'store'])->name('
 Route::get('/remisiones', [RemisionController::class, 'index'])->name('remision.index');
 Route::get('/remisiones/createform', [RemisionController::class, 'createForm'])->name('remision.createform');
 Route::post('/remisiones/create', [RemisionController::class, 'createRemision'])->name('remision.createRemision');
-Route::get('/remisiones/editform/', [RemisionController::class, 'editForm'])->name('remision.editform');
+Route::get('/remisiones/editform/{remision}', [RemisionController::class, 'editForm'])->name('remision.editform');
 Route::post('/remisiones/edit', [RemisionController::class, 'updateRemision'])->name('remision.updateRemision');
 //Route::post('/remisiones/update', 'RemisionController@updateRemision')->name('remision.update');
 //Route::get('/remisiones', 'RemisionController@index')->name('remision.index');
