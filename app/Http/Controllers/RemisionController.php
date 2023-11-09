@@ -23,7 +23,7 @@ class RemisionController extends Controller
                 'cod_remision' => 'required',
                 'cod_guia' => 'required',
             ]);
-
+           
             $result = Remision::createRemision($data);
             
 
@@ -31,25 +31,26 @@ class RemisionController extends Controller
                 // Manejar errores y mostrar mensajes al usuario
                 return redirect()->back()->with('error', $result);
             }
-
-            return redirect()->route('remision.index', $result->id_remision)->with('success', 'Remisión creada exitosamente.');
+            return redirect()->route('remision.index');
+            
         } catch (\Exception $e) {
+            
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
     public function updateRemision(Request $request)
     {
+        
         try {
-            
+           
             $data = $request->validate([
                 'cod_remision' => 'required',
                 'cod_factura' => 'required',
                 'cod_guia'=>'required',
                 'fecha_entrega'=>'required',
-                'imagen2' => 'required|image',  
+                'imagen2' => 'required|image',
             ]);
-
             $imageDt= $request->file('imagen2')->store('public');
             $urlImage=Storage::url($imageDt);
                 list($codRemision, $codFactura, $codGuia, $fecha_entrega, $imagen) = array_values($data);
@@ -73,10 +74,10 @@ class RemisionController extends Controller
         return view('remisiones.createform');
     }
 
-    public function editForm()
+    public function editForm(request $request, $remisiones)
 {
-   
-    return view('remisiones.editform');
+    $remisionObj = unserialize(base64_decode($remisiones));
+    return view('remisiones.editform', compact('remisionObj'));
 }
 }
 
