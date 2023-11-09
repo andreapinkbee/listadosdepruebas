@@ -15,23 +15,23 @@
         <form action="{{ route('remision.updateRemision') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="cod_guia">Código Remisión</label>
-                <input type="text" name="cod_remision" id="cod_remision" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="cod_factura">Código Factura</label>
-                <input type="text" name="cod_factura" id="cod_factura" class="form-control" required>
+                <label for="cod_remision">Código Remisión</label>
+                <input type="text" name="cod_remision" id="cod_remision" class="form-control text-primary" value="{{ $remisionObj->cod_remision }}" readonly required>
             </div>
             <div class="form-group">
                 <label for="cod_guia">Código Guía</label>
-                <input type="text" name="cod_guia" id="cod_guia" class="form-control" required>
+                <input type="text" name="cod_guia" id="cod_guia" class="form-control" value="{{ $remisionObj->getGuiaTransporteCod($remisionObj->id_guia) }}" required>
+            </div>
+            <div class="form-group">
+                <label for="cod_factura">Código Factura</label>
+                <input type="text" name="cod_factura" id="cod_factura" class="form-control" value="{{ $remisionObj->getFacturaCod($remisionObj->id_factura) }}" required>
             </div>
             <div class="form-group">
                 <label for="fecha_entrega">Fecha Entrega</label>
                 <input type="date" name="fecha_entrega" id="fecha_entrega" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="imagen">Seleccionar Imagen</label>
+                <label for="imagen2">Seleccionar Imagen</label>
                 <input type="file" name="imagen2" id="imagen2" class="form-control" accept="image/*" required>
             </div>
             <button type="submit" class="btn btn-primary">Editar Remisión</button>

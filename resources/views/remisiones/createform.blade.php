@@ -12,7 +12,7 @@
     
     <div class="container"  style="width: 30rem;">
         <h1>Crear Nueva Remisión</h1>
-        <form action="{{ route('remision.updateRemision') }}" method="POST">
+        <form action="{{ route('remision.createRemision') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="cod_guia">Código Remisión</label>
