@@ -71,6 +71,13 @@ class Remision extends Model
                         GuiaTransporte::where('cod_guia', $guiaTransporte->cod_guia)->update(['fecha_entrega' => $fecha_entrega]);
                         Remision::where('cod_remision', $codRemision)->update(['imagen2' => $imagen, 'id_guia' => $guiaTransporte->id_guia]);
                      }
+                     else if($guiaTransporte->fecha_entrega !== null && $guiaTransporte->fecha_entrega === $fecha_entrega){
+                        GuiaTransporte::where('cod_guia', $guiaTransporte->cod_guia)->update(['fecha_entrega' => $fecha_entrega]);
+                      
+                        Remision::where('cod_remision', $codRemision)->update(['imagen2' => $imagen, 'id_guia' => $guiaTransporte->id_guia]);
+                       
+
+                     }
             else if ($guiaTransporte->fecha_entrega !== null || $guiaTransporte->fecha_entrega !== $fecha_entrega) {
 
             throw new Exception("La fecha ingresada no coincide con la fecha de la guía, por favor verifique los datos e intente de nuevo");
